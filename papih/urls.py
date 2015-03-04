@@ -1,5 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework.authtoken import views
+
 from papih_user.urls import router as user_router
 from papih_key.urls import router as key_router
 from papih_track.urls import router as track_router
@@ -11,7 +13,9 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^authtoken/', views.obtain_auth_token),
 
     url(r'^', include(user_router.urls)),
     url(r'^key/', include(key_router.urls)),
