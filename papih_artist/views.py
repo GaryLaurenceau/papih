@@ -27,7 +27,7 @@ class BasicView(viewsets.ViewSet):
 
         result = self.adapter().get(
             request,
-            self.provider().get(pk, size)
+            self.provider().get(pk, key)
         )
         return Response(result)
 
