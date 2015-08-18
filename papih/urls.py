@@ -13,6 +13,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^authtoken/', views.obtain_auth_token),
 
     url(r'^', include(user_router.urls)),
     url(r'^key/', include(key_router.urls)),
