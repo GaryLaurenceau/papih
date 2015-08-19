@@ -36,13 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'rest_framework.authtoken',
-    'rest_framework',
-=======
     'rest_framework',
     'rest_framework.authtoken',
->>>>>>> develop
     'papih_user',
     'papih_key',
     'papih_track',
@@ -66,14 +61,6 @@ ROOT_URLCONF = 'papih.urls'
 WSGI_APPLICATION = 'papih.wsgi.application'
 
 REST_FRAMEWORK = {
-<<<<<<< HEAD
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
-    ],
-=======
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'
     ],
@@ -81,25 +68,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
->>>>>>> develop
     'PAGINATE_BY': 10,
 }
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-<<<<<<< HEAD
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'papih',
-#        'USER': 'postgres',
-#        'PASSWORD': 'slain28_pool',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#    }
-#}
-=======
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -110,7 +84,6 @@ REST_FRAMEWORK = {
 #         'PORT': '5432',
 #     }
 # }
->>>>>>> develop
 
 DATABASES = {
     'default': {
