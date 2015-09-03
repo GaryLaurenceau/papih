@@ -46,7 +46,7 @@ class Youtube:
             track['title'] = result["snippet"]["title"]
             track['description'] = result["snippet"]["description"]
             track['thumbnail'] = result["snippet"]["thumbnails"]["high"]["url"]
-            track['duration'] = str(int(isodate.parse_duration(result["contentDetails"]["duration"]).total_seconds()))
+            track['duration'] = str(int(isodate.parse_duration(result["snippet"]["duration"]).total_seconds()))
             tracks.append(track)
 
         return {
@@ -89,7 +89,7 @@ class Soundcloud:
             track['title'] = result['title'] or ''
             track['description'] = result['description'] or ''
             track['thumbnail'] = result['artwork_url'].replace("large.jpg", "crop.jpg") if result['artwork_url'] else ""
-            track['duration'] = str(raw['duration'] / 1000 or '')
+            track['duration'] = str(result['duration'] / 1000 or '')
             tracks.append(track)
         return {
             'count': len(tracks),
