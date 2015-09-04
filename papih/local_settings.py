@@ -18,11 +18,21 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite',
-    }
-}
+        'default': {
+                    'NAME': "ms_papih",
+                    'ENGINE': 'django.db.backends.mysql',
+                    'USER': "ms",
+                    'PASSWORD': "256ms56",
+                    'HOST': "localhost",
+                    }
+        }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': 'db.sqlite',
+#    }
+#}
 
 
 # Internationalization
