@@ -1,7 +1,8 @@
 import json
 from apiclient.discovery import build
 from soundcloud import Client
-
+import requests
+from papih import settings
 
 class Youtube:
     YOUTUBE_API_SERVICE_NAME = "youtube"
@@ -28,7 +29,36 @@ class Youtube:
             maxResults=params['page_size'],
             pageToken=params['page_token'],
         ).execute()
+        response = self.getvideoduration(response, auth)
         return response
+
+
+## See https://code.google.com/p/gdata-issues/issues/detail?id=4294
+## no other way to do it due tu google implementation
+    def getvideoduration(self, response, auth):
+        idlist = []
+        for result in response.get("items", []):
+            idlist.append(result["id"]["videoId"])
+        print idlist
+        stridlist = ",".join(idlist)
+        print stridlist
+        headers = {
+            'user-agent': "musicsphere",
+        }
+        params = {
+            'id': stridlist,
+            'part': 'id,snippet,contentDetails',
+            'key': auth.key,
+        }
+        secresponse = requests.get(
+            'https://www.googleapis.com/youtube/v3/videos',
+            params=params,
+            headers=headers
+        )
+        a = json.loads(secresponse.content)
+        response ['items'] = a['items']
+        return response
+
 
 
 class Soundcloud:

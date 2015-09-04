@@ -10,7 +10,7 @@ def build_url(*args, **kwargs):
     qdict = QueryDict('', mutable=True)
     for k, v in params.iteritems():
         if type(v) is list: qdict.setlist(k, v)
-        else: qdict[k] = v
+    else: qdict[k] = v
 
     return url + '?' + qdict.urlencode()
 
@@ -41,11 +41,12 @@ class Youtube:
         tracks = []
         for result in raw.get("items", []):
             track = {}
-            track['id'] = result["id"]["videoId"]
+            track['id'] = result["id"]
             track['url'] = reverse('stream_youtube-detail', args=[track['id']], request=request)
             track['title'] = result["snippet"]["title"]
             track['description'] = result["snippet"]["description"]
             track['thumbnail'] = result["snippet"]["thumbnails"]["high"]["url"]
+            track['duration'] = str(int(isodate.parse_duration(result["contentDetails"]["duration"]).total_seconds()))
             tracks.append(track)
 
         return {
@@ -88,6 +89,7 @@ class Soundcloud:
             track['title'] = result['title'] or ''
             track['description'] = result['description'] or ''
             track['thumbnail'] = result['artwork_url'].replace("large.jpg", "crop.jpg") if result['artwork_url'] else ""
+            track['duration'] = str(result['duration'] / 1000 or '')
             tracks.append(track)
         return {
             'count': len(tracks),
