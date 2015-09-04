@@ -2,7 +2,6 @@ import json
 from apiclient.discovery import build
 from soundcloud import Client
 import requests
-from papih import settings
 
 class Youtube:
     YOUTUBE_API_SERVICE_NAME = "youtube"
