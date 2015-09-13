@@ -38,9 +38,7 @@ class Youtube:
         idlist = []
         for result in response.get("items", []):
             idlist.append(result["id"]["videoId"])
-        print idlist
         stridlist = ",".join(idlist)
-        print stridlist
         headers = {
             'user-agent': "musicsphere",
         }
@@ -80,10 +78,9 @@ class Soundcloud:
 
         client = Client(client_id=auth.key, client_secret=auth.secret)
         response = client.get(
-            '/tracks',
+            '/tracks/',
             q=params['query'],
             limit=params['page_size'],
             offset=(int(params['page_token']) - 1) * int(params['page_size']),
         )
-        response = json.loads(response.raw_data)
-        return response
+        return json.loads(response.raw_data)
